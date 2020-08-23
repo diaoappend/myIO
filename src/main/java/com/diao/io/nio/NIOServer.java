@@ -53,8 +53,8 @@ public class NIOServer {
                     socketChannel.configureBlocking(false);
                     System.out.println("客户端连接成功，生成一个SocketChannel "+socketChannel.hashCode());
                     //将当前的SocketChannel注册到Selector上，绑定一个读取事件，同时给这个SocketChannel创建一个Buffer
-                    socketChannel.register(selector,SelectionKey.OP_READ, ByteBuffer.allocate(1024));
-                //如果是读取事件
+                    SelectionKey selectionKey1 = socketChannel.register(selector, SelectionKey.OP_READ, ByteBuffer.allocate(1024));
+                    //如果是读取事件
                 }else if(selectionKey.isReadable()){
                     //获取读取事件对应的Channel
                     SocketChannel channel = (SocketChannel)selectionKey.channel();
